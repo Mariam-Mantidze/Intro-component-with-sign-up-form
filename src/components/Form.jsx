@@ -70,4 +70,21 @@ const FormComponent = styled.form`
       background: rgba(119, 226, 179, 1);
     }
   }
+
+  & p {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: rgba(186, 183, 212, 1);
+    width: 249px;
+    margin-top: -8px;
+  }
+
+  & span {
+    color: #f96a6a;
+    font-weight: 700;
+  }
 `;
