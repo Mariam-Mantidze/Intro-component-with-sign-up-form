@@ -18,4 +18,10 @@ export const GlobalStyles = createGlobalStyle`
     background-size: cover;
 
  }
+ button {
+    font-family: "Poppins", sans-serif;
+ };
+ input {
+    font-family: "Poppins", sans-serif;
+ };
 `;

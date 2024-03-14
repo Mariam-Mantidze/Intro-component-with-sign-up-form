@@ -4,7 +4,9 @@ import Inputs from "./Inputs";
 export default function Form() {
   return (
     <>
-      <InfoSnippet>Try it free 7 days then $20/mo. thereafter</InfoSnippet>
+      <InfoSnippet>
+        Try it free 7 days <span>then $20/mo. thereafter</span>{" "}
+      </InfoSnippet>
       <FormComponent>
         <Inputs />
         <button type="submit">CLAIM YOUR FREE TRIAL</button>
@@ -18,6 +20,7 @@ export default function Form() {
 }
 
 const InfoSnippet = styled.h3`
+  width: 327px;
   margin-top: 64px;
   color: rgba(255, 255, 255, 1);
   background: rgba(94, 84, 164, 1);
@@ -26,10 +29,15 @@ const InfoSnippet = styled.h3`
   box-shadow: 0px 8px 0px 0px rgba(0, 0, 0, 0.15);
 
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 26px;
   letter-spacing: 0.2678571045398712px;
   text-align: center;
+
+  span {
+    font-weight: 400;
+    color: #ffffffc4;
+  }
 `;
 
 const FormComponent = styled.form`
@@ -42,4 +50,24 @@ const FormComponent = styled.form`
   gap: 16px;
   width: 327px;
   border-radius: 8px;
+
+  & button {
+    box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.09) inset;
+    background: rgba(56, 204, 139, 1);
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 26px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: rgba(255, 255, 255, 1);
+
+    &:hover {
+      background: rgba(119, 226, 179, 1);
+    }
+  }
 `;
