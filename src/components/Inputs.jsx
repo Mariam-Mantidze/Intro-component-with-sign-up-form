@@ -57,6 +57,10 @@ const Input = styled.input`
   text-align: left;
   color: rgba(61, 59, 72, 1);
   margin-top: 16px;
+
+  @media (min-width: 1400px) {
+    margin-top: 20px;
+  }
 `;
 
 const ErrorMessage = styled.p`

@@ -75,7 +75,7 @@ export default function Form() {
   };
 
   return (
-    <>
+    <Container>
       <InfoSnippet>
         Try it free 7 days <span>then $20/mo. thereafter</span>{" "}
       </InfoSnippet>
@@ -93,9 +93,11 @@ export default function Form() {
           <span>Terms and Services</span>{" "}
         </p>
       </FormComponent>
-    </>
+    </Container>
   );
 }
+
+const Container = styled.div``;
 
 const InfoSnippet = styled.h3`
   width: 327px;
@@ -111,6 +113,11 @@ const InfoSnippet = styled.h3`
   line-height: 26px;
   letter-spacing: 0.2678571045398712px;
   text-align: center;
+
+  @media (min-width: 1400px) {
+    width: 540px;
+    margin-top: 0;
+  }
 
   span {
     font-weight: 400;
@@ -128,6 +135,11 @@ const FormComponent = styled.form`
   /* gap: 16px; */
   width: 327px;
   border-radius: 8px;
+
+  @media (min-width: 1400px) {
+    width: 540px;
+    padding: 40px;
+  }
 
   & button {
     box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.09) inset;
@@ -147,6 +159,10 @@ const FormComponent = styled.form`
 
     &:hover {
       background: rgba(119, 226, 179, 1);
+    }
+
+    @media (min-width: 1400px) {
+      margin-top: 20px;
     }
   }
 

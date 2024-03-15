@@ -25,4 +25,10 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   padding: 88px 24px 68px;
+
+  @media (min-width: 1000px) {
+    flex-direction: row;
+    gap: 45px;
+    padding: 121px 165px;
+  }
 `;

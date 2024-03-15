@@ -17,15 +17,17 @@ export const GlobalStyles = createGlobalStyle`
     font-family: "Poppins", sans-serif;
     background-repeat: no-repeat;
     background-size: cover;
+    min-height: 100dvh;
 
     display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  @media(min-width: 600px) {
 
-   
-
+   background-image: url(${DesktopBackgroundTheme})
+  }
  }
  button {
     font-family: "Poppins", sans-serif;
