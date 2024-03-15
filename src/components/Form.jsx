@@ -11,19 +11,19 @@ export default function Form() {
   });
 
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { id, value } = e.target;
 
     setValues({ ...values, [id]: value });
-    // console.log(e.target.id);
   };
 
   const validate = () => {
     let errors = {};
     const email_pattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
     const password_pattern =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W)[A-Za-z\d\W]{8,}$/;
 
     // name validation
     if (!values.name.trim()) {
@@ -65,8 +65,12 @@ export default function Form() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length == 0) {
-      console.log("Valid form, subbmitting.");
-      return "Success, check your email!";
+      setSuccessMessage(
+        "Form submitted successfully! Please check your email."
+      );
+      setValues({ name: "", lastName: "", email: "", password: "" });
+    } else {
+      setSuccessMessage("");
     }
   };
 
@@ -80,10 +84,10 @@ export default function Form() {
           values={values}
           setValues={setValues}
           handleChange={handleChange}
-          // validate={validate}
           errors={errors}
         />
         <button type="submit">CLAIM YOUR FREE TRIAL</button>
+        {successMessage && <p className="successMessage">{successMessage}</p>}
         <p className="disclaimer">
           By clicking the button, you are agreeing to our{" "}
           <span>Terms and Services</span>{" "}
@@ -152,12 +156,20 @@ const FormComponent = styled.form`
     font-weight: 500;
     line-height: 21px;
     color: rgba(186, 183, 212, 1);
-    width: 249px;
     margin-top: 8px;
   }
 
   & span {
     color: #f96a6a;
     font-weight: 700;
+  }
+
+  & .successMessage {
+    text-align: center;
+    color: #67c667;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    font-style: italic;
   }
 `;
