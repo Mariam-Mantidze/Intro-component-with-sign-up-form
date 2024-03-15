@@ -1,13 +1,46 @@
 import styled from "styled-components";
+import ErrorIcon from "/images/icon-error.svg";
 
-export default function Inputs() {
+export default function Inputs({ values, handleChange, errors }) {
   const inputs = [];
   return (
     <>
-      <Input type="text" placeholder="First Name" />
-      <Input type="text" placeholder="Last Name" />
-      <Input type="email" placeholder="Email Adress" />
-      <Input type="password" placeholder="Password" />
+      <Input
+        onChange={handleChange}
+        value={values.name}
+        errors={errors.name}
+        id="name"
+        type="text"
+        placeholder="First Name"
+      />
+      {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+      <Input
+        value={values.lastName}
+        errors={errors.lastName}
+        onChange={handleChange}
+        id="lastName"
+        type="text"
+        placeholder="Last Name"
+      />
+      {errors.lastName && <ErrorMessage>{errors.lastName}</ErrorMessage>}
+      <Input
+        value={values.email}
+        errors={errors.email}
+        onChange={handleChange}
+        id="email"
+        type="email"
+        placeholder="Email Adress"
+      />
+      {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+      <Input
+        value={values.password}
+        errors={errors.password}
+        onChange={handleChange}
+        id="password"
+        type="password"
+        placeholder="Password"
+      />
+      {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
     </>
   );
 }
@@ -23,4 +56,14 @@ const Input = styled.input`
   letter-spacing: 0.25px;
   text-align: left;
   color: rgba(61, 59, 72, 1);
+  margin-top: 16px;
+`;
+
+const ErrorMessage = styled.p`
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 500;
+  text-align: right;
+  color: rgba(255, 121, 121, 1);
+  margin-top: 6px;
 `;

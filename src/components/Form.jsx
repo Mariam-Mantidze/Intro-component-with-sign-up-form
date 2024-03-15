@@ -1,16 +1,90 @@
 import styled from "styled-components";
 import Inputs from "./Inputs";
+import { useState } from "react";
 
 export default function Form() {
+  const [values, setValues] = useState({
+    name: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+
+    setValues({ ...values, [id]: value });
+    // console.log(e.target.id);
+  };
+
+  const validate = () => {
+    let errors = {};
+    const email_pattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+    const password_pattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    // name validation
+    if (!values.name.trim()) {
+      errors.name = "First Name cannot be empty";
+    } else if (values.name.length < 3) {
+      errors.name = "First Name must be at least 3 characters";
+    }
+
+    // Last name validation
+    if (!values.lastName.trim()) {
+      errors.lastName = "Last Name cannot be empty";
+    } else if (values.lastName.length < 2) {
+      errors.lastName = "Last Name must be at least 3 characters";
+    }
+
+    // email validation
+    if (!values.email.trim()) {
+      errors.email = "Email can not be empty";
+    } else if (!email_pattern.test(values.email)) {
+      errors.email = "Looks like this is not an email";
+    }
+
+    // password validation
+    if (!values.password.trim()) {
+      errors.password = "Password cannot be empty";
+    } else if (!password_pattern.test(values.password)) {
+      errors.password =
+        "Password must contain at least 8 characters, including uppercase, lowercase, numbers, and special characters.";
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validate();
+
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length == 0) {
+      console.log("Valid form, subbmitting.");
+      return "Success, check your email!";
+    }
+  };
+
   return (
     <>
       <InfoSnippet>
         Try it free 7 days <span>then $20/mo. thereafter</span>{" "}
       </InfoSnippet>
-      <FormComponent>
-        <Inputs />
+      <FormComponent onSubmit={handleSubmit}>
+        <Inputs
+          values={values}
+          setValues={setValues}
+          handleChange={handleChange}
+          // validate={validate}
+          errors={errors}
+        />
         <button type="submit">CLAIM YOUR FREE TRIAL</button>
-        <p>
+        <p className="disclaimer">
           By clicking the button, you are agreeing to our{" "}
           <span>Terms and Services</span>{" "}
         </p>
@@ -47,7 +121,7 @@ const FormComponent = styled.form`
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  /* gap: 16px; */
   width: 327px;
   border-radius: 8px;
 
@@ -58,6 +132,7 @@ const FormComponent = styled.form`
     border-radius: 5px;
     padding: 15px;
     cursor: pointer;
+    margin-top: 16px;
 
     font-size: 15px;
     font-weight: 600;
@@ -71,16 +146,14 @@ const FormComponent = styled.form`
     }
   }
 
-  & p {
+  & .disclaimer {
     text-align: center;
     font-size: 11px;
     font-weight: 500;
     line-height: 21px;
-    letter-spacing: 0px;
-    text-align: center;
     color: rgba(186, 183, 212, 1);
     width: 249px;
-    margin-top: -8px;
+    margin-top: 8px;
   }
 
   & span {

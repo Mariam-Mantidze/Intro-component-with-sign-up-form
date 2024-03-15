@@ -10,7 +10,8 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
 }
  body {
-    padding-top: 88px;
+    padding: 88px 0 68px 0;
+    
     background-color: rgba(255, 121, 121, 1);
     background-image: url(${MobileBackgroundTheme});
     font-family: "Poppins", sans-serif;
