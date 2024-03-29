@@ -15,6 +15,7 @@ export default function Form() {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
+    setErrors({ ...errors, [id]: "" });
 
     setValues({ ...values, [id]: value });
   };
