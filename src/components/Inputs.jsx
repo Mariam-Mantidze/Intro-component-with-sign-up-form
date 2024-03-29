@@ -37,7 +37,7 @@ export default function Inputs({ values, handleChange, errors }) {
           onChange={handleChange}
           id="email"
           type="email"
-          placeholder="Email Adress"
+          placeholder="Email Address"
         />
         {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
         {errors.email ? <ErrorImg src={ErrorIcon} alt="Error Icon" /> : null}

@@ -41,7 +41,7 @@ export default function Form() {
 
     // email validation
     if (!values.email.trim()) {
-      errors.email = "Email can not be empty";
+      errors.email = "Email cannot be empty";
     } else if (!email_pattern.test(values.email)) {
       errors.email = "Looks like this is not an email";
     }
